@@ -1,0 +1,16 @@
+[
+  {
+    "id": "scp-173",
+    "title": "The Sculpture",
+    "object_class": "Euclid",
+    "keywords": ["sculpture", "statue", "moves", "neck snap"],
+    "raw_text": "The object is animate and extremely hostile. The object cannot move while within a direct line of sight. Line of sight must not be broken at any time with the object. Personnel assigned to enter container are instructed to alert one another before blinking. Object is reported to attack by snapping the neck at the base of the skull, or by strangulation."
+  },
+  {
+    "id": "scp-049",
+    "title": "The Plague Doctor",
+    "object_class": "Euclid",
+    "keywords": ["plague doctor", "cure", "pestilence", "zombies"],
+    "raw_text": "SCP-049 is a humanoid entity which bears the appearance of a medieval plague doctor. It is capable of speech and is highly intelligent. It claims its purpose is to cure the 'Pestilence' but has been unable to furnish any details on what this Pestilence is. Upon encountering a human, it will attempt to kill them and then perform a crude surgery on the corpse. The corpses invariably reanimate as zombie-like creatures."
+  }
+]

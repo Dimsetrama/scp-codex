@@ -1,26 +1,94 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-color: white;
+  --text-color: #1f2937; /* Dark Gray */
+  --header-text: black;
+  --accent-color: #ef4444; /* Red */
+  --highlight-bg: #1f2937;
+  --highlight-text: white;
+  --border-color: black;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+[data-theme="dark"] {
+  --bg-color: #0a0a0a;
+  --text-color: #ff3333; /* Red text */
+  --header-text: #ff3333;
+  --accent-color: #ff3333;
+  --highlight-bg: #e5e7eb;
+  --highlight-text: black;
+  --border-color: #ff3333;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Share Tech Mono', 'IBM Plex Mono', monospace;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- CRT EFFECT STYLES --- */
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50.2% { opacity: 0.7; }
+  50.5% { opacity: 0.2; }
+  50.8% { opacity: 1; }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100%); }
+}
+
+.crt-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+/* THE FIX: Only apply the intense flicker animation when in dark mode */
+[data-theme="dark"] .crt-effect::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 2;
+  background-size: 100% 3px, 4px 100%;
+  pointer-events: none;
+  animation: flicker 0.15s infinite;
+}
+
+/* The subtle scanline applies to both modes */
+.crt-effect::after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  background: rgba(100, 100, 100, 0.05);
+  z-index: 2;
+  pointer-events: none;
+  animation: scanline 8s linear infinite;
+}
+
+a {
+  color: var(--text-color);
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-color);
+}
+
+a:visited {
+  color: #888888; /* A neutral gray for visited links */
+}
+
+[data-theme="dark"] a:visited {
+  color: #aaaaaa;
 }
